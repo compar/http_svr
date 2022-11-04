@@ -41,6 +41,7 @@ impl  WebServiceHandler{
     }
 }
 
+
 impl Handler for WebServiceHandler {
     fn handle(req: &HttpRequest) ->HttpResponse {
         let http::httprequest::Resource::Path(s) = &req.resource;
