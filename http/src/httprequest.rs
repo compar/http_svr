@@ -76,7 +76,7 @@ impl  From<String> for HttpRequest {
             }
         }
         HttpRequest { 
-            method: parsed_method, 
+            method: parsed_method,
             version: parsed_version, 
             resource: parsed_resource, 
             headers: parsed_header,
@@ -134,7 +134,7 @@ mod tests{
         header_expected.insert("Accept".into(), " */*".into());
         header_expected.insert("Host".into(), " localhost".into());
         header_expected.insert("User-Agent".into(), " curl/7.71.1".into());
-        let req:HttpRequest = s.into();
+        let req:HttpRequest = s.into(); //实现了From trait
 
         assert_eq!(Method::Get,req.method);
         assert_eq!(Version::V1_1,req.version);

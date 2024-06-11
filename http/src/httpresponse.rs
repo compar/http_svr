@@ -12,25 +12,25 @@ pub struct HttpResponse<'a>{
 impl<'a> Default for HttpResponse<'a>{
     fn default() -> Self {
         Self { 
-            version: "HTTP/1.1".into(), 
-            status_code: "200".into(), 
-            status_text: "OK".into(), 
+            version: "HTTP/1.1",
+            status_code: "200",
+            status_text: "OK",
             headers: None, 
             body: None }
     }
 }
 
 impl<'a> From<HttpResponse<'a>> for String{
-    fn from(res: HttpResponse<'a>) -> String {
-        let res1 = res.clone();
+    fn from(res: HttpResponse) -> String {
+
         format!(
             "{} {} {}\r\n{}Content-Length: {}\r\n\r\n{}",
-            &res1.version(),
-            &res1.status_code(),
-            &res1.status_text(),
-            &res1.headers(),
-            &res.body.unwrap().len(),
-            &res1.body(),
+            res.version(),
+            res.status_code(),
+            res.status_text(),
+            res.headers(),
+            res.body().len(),
+            res.body(),
         )
     }
 }
@@ -164,6 +164,7 @@ mod tests{
             body:Some("xxxx".into()),
         };
         let http_string:String = response_expected.into();
+        println!("{}",http_string);
         let actual_string = "HTTP/1.1 404 Not Found\r\nContent-Type:text/html\r\nContent-Length: 4\r\n\r\nxxxx";
         assert_eq!(http_string,actual_string);
     }
