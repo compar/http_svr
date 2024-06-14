@@ -1,3 +1,3 @@
 [workspace]
 
-members =[ "hello_html","http","httpserver"]
+members =[ "hello_html","http","httpserver", "webservice"]
