@@ -1,5 +1,5 @@
 use actix_web::web;
-use super::handlers::{health_check_handler, new_course};
+use super::handlers::{get_course_detail, get_courses_for_teacher, health_check_handler, new_course};
 
 pub fn genral_routes(cfg: &mut web::ServiceConfig){
     cfg.route("/health",web::get().to(health_check_handler));
@@ -7,6 +7,9 @@ pub fn genral_routes(cfg: &mut web::ServiceConfig){
 
 pub fn course_routes(cfg: &mut web::ServiceConfig){
     cfg
-        .service(web::scope("/courses"))
-        .route("/",web::post().to(new_course));
+        .service(web::scope("/courses")
+        .route("/",web::post().to(new_course))
+        .route("/{teacher_id}",web::get().to(get_courses_for_teacher))
+        .route("/{teacher_id}/{course_id}",web::get().to(get_course_detail))
+        );
 }
