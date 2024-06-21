@@ -1,3 +1,6 @@
 [workspace]
 
 members =[ "hello_html","http","httpserver", "webservice"]
+
+
+resolver = "2"
