@@ -1,5 +1,6 @@
 use actix_web::web;
-use super::handlers::{get_course_detail, get_courses_for_teacher, health_check_handler, new_course};
+use crate::handlers::course::{get_course_detail, get_courses_for_teacher, new_course};
+use crate::handlers::genneral::health_check_handler;
 
 pub fn genral_routes(cfg: &mut web::ServiceConfig){
     cfg.route("/health",web::get().to(health_check_handler));

@@ -6,16 +6,16 @@ use sqlx::postgres::PgPoolOptions;
 use crate::routes::{course_routes, genral_routes};
 use crate::state::AppState;
 
-#[path="../handlers.rs"]
-mod  handlers;
+#[path= "../handlers/mod.rs"]
+mod handlers;
 #[path="../routes.rs"]
 mod routes;
 #[path="../state.rs"]
 mod state;
-#[path= "../modules.rs"]
-mod modules;
-#[path= "../db_access.rs"]
-mod db_access;
+#[path= "../models/mod.rs"]
+mod models;
+#[path= "../dbaccess/mod.rs"]
+mod dbaccess;
 #[path= "../errors.rs"]
 mod errors;
 

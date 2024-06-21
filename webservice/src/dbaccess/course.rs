@@ -1,7 +1,7 @@
 use chrono::NaiveDateTime;
 use sqlx::PgPool;
 use crate::errors::MyError;
-use crate::modules::Course;
+use crate::models::course::Course;
 
 pub async fn get_course_for_teacher_db(pool: &PgPool, teacher_id:i32)->Result<Vec<Course>,MyError>{
     let rows = sqlx::query!(
@@ -37,7 +37,7 @@ pub async fn get_course_detail_db(pool: &PgPool, teacher_id: i32, course_id:i32)
     )
         .fetch_one(pool)
         .await;
-    
+
     if let Ok(row) = row{
         Ok(Course {
             id: Some(row.id as usize),
@@ -48,7 +48,7 @@ pub async fn get_course_detail_db(pool: &PgPool, teacher_id: i32, course_id:i32)
     }else{
         Err(MyError::NotFound("Course Id not found".into()))
     }
-        
+
 }
 
 
