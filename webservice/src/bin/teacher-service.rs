@@ -16,6 +16,8 @@ mod state;
 mod modules;
 #[path= "../db_access.rs"]
 mod db_access;
+#[path= "../errors.rs"]
+mod errors;
 
 #[actix_rt::main]
 async  fn main() ->io::Result<()> {
